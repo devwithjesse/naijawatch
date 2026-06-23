@@ -1,0 +1,162 @@
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{{ app_name }} Weekly Digest</title>
+        <style>
+            body {
+                font-family:
+                    Inter,
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    "Helvetica Neue",
+                    Arial;
+                color: #0f172a;
+            }
+            .container {
+                max-width: 700px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+            .header {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+            }
+            .logo {
+                height: 44px;
+                width: 44px;
+                object-fit: contain;
+            }
+            h1 {
+                margin: 8px 0 0;
+                font-size: 20px;
+            }
+            .muted {
+                color: #475569;
+                font-size: 13px;
+            }
+            .card {
+                border-radius: 8px;
+                border: 1px solid #e6eef8;
+                padding: 12px;
+                margin-top: 14px;
+                background: #ffffff;
+            }
+            .list {
+                margin: 8px 0 0;
+                padding-left: 18px;
+            }
+            a {
+                color: #0ea5a4;
+                text-decoration: none;
+            }
+            .footer {
+                margin-top: 18px;
+                font-size: 12px;
+                color: #64748b;
+            }
+            .tag {
+                display: inline-block;
+                padding: 2px 8px;
+                background: #f1f5f9;
+                border-radius: 999px;
+                font-size: 12px;
+                color: #334155;
+            }
+            .event-summary {
+                font-size: 14px;
+                margin: 6px 0;
+            }
+            .article {
+                margin: 6px 0;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                {% if logo_url %}<img
+                    src="{{ logo_url }}"
+                    alt="logo"
+                    class="logo"
+                />{% endif %}
+                <div>
+                    <h1>{{ app_name }} — Weekly Digest</h1>
+                    <div class="muted">As of {{ generated_at }}</div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="muted">National Safety Index</div>
+                <div
+                    style="
+                        display: flex;
+                        align-items: baseline;
+                        gap: 12px;
+                        margin-top: 6px;
+                    "
+                >
+                    <div style="font-size: 28px; font-weight: 700">
+                        {{ national.safety_index }}
+                    </div>
+                    <div class="tag">
+                        Risk: {{ national.risk_score }} — {{ national.label }}
+                    </div>
+                </div>
+                {% if top_states %}
+                <div style="margin-top: 10px">
+                    <div class="muted">Top risky states</div>
+                    <ol class="list">
+                        {% for s in top_states %}
+                        <li>
+                            {{ s.state }} — {{ s.risk_label }} ({{ s.risk_score
+                            }})
+                        </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                {% endif %}
+            </div>
+
+            <div class="card">
+                <div class="muted">Recent security events</div>
+                {% for ev in recent_events %}
+                <div class="event-summary">
+                    <strong>{{ ev.event_type }}</strong> — {{ ev.summary or 'No
+                    summary' }}<br />
+                    <span class="muted"
+                        >{{ ev.location_name }} • {{ ev.event_date or
+                        ev.created_at }}</span
+                    >
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="card">
+                <div class="muted">Latest articles</div>
+                {% for a in articles %}
+                <div class="article">
+                    <a href="{{ a.url }}">{{ a.title }}</a>
+                    <span class="muted">• {{ a.published_at or '' }}</span>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="footer">
+                <p>
+                    Disclaimer: Data in this digest is aggregated from public
+                    news sources. It may not be accurate or complete. Use for
+                    situational awareness only.
+                </p>
+                <p>
+                    If you received this in error or want to unsubscribe, visit
+                    <a href="{{ unsubscribe_base }}">Unsubscribe</a>.
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
