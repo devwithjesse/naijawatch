@@ -12,6 +12,7 @@ class Settings(BaseSettings):
     ENVIRONMENT: str = "development"  # development | production
 
     APP_BASE_URL: str = "http://localhost:5173" # Override in .env
+    ORIGINS: str = "http://localhost:5173" # Override in .env
 
     # API Keys
     GROQ_API_KEY: Optional[str] = None

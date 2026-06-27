@@ -26,7 +26,7 @@ app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 # CORS Policy
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=config.APP_BASE_URL.split(','),
+    allow_origins=config.ORIGINS.split(','),
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

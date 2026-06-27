@@ -23,29 +23,6 @@ def _generate_token() -> str:
     return secrets.token_urlsafe(32)
 
 
-def _send_email(to: str, subject: str, html: str) -> bool:
-    if not settings.SMTP_USER or not settings.SMTP_PASSWORD:
-        print("[EMAIL ERROR] SMTP credentials not set in environment.")
-        return False
-
-    try:
-        msg = EmailMessage()
-        msg["Subject"] = subject
-        msg["From"] = FROM_EMAIL
-        msg["To"] = to
-
-        msg.set_content(html, subtype="html")
-
-        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as smtp:
-            smtp.login(settings.SMTP_USER, settings.SMTP_PASSWORD)
-            smtp.send_message(msg)
-
-        return True
-    except Exception as e:
-        print(f"[EMAIL ERROR] {e}")
-        return False
-
-
 @router.post("/subscribe", status_code=200)
 def subscribe(payload: SubscribeRequest, db: Session = Depends(get_db)):
     """
