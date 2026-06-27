@@ -25,7 +25,9 @@ class Settings(BaseSettings):
     DATABASE_URL: str = "sqlite:///./naijawatch.db"
 
     # Digest / Email Settings
-    FROM_EMAIL: str = "updates@naijawatch.local"  # Override in .env
+    FROM_EMAIL: str = "NaijaWatch <noreply@jessemokolo.me>"  # Override in .env
+    REPLY_TO: str = "naiajawatchinfo@gmail.com"
+    RESEND_API_KEY: Optional[str] = None
 
     @property
     def DB_URL(self) -> str:

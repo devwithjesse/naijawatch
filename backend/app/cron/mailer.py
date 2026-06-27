@@ -197,7 +197,7 @@ def run_mailer():
     snapshot_risk_scores()
 
     # 2. Send the digest
-    # send_weekly_digest()
+    send_weekly_digest()
 
 
 if __name__ == "__main__":
