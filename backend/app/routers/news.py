@@ -25,6 +25,7 @@ def get_news_feed(
     articles = (
         db.query(Article)
         .filter(Article.extraction_status != "irrelevant")
+        .filter(Article.body != None)
         .order_by(Article.published_at.desc())
         .offset(skip)
         .limit(limit)
