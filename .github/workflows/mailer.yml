@@ -30,8 +30,9 @@ jobs:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}
           SMTP_USER: ${{ secrets.SMTP_USER }}
           SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
-          APP_BASE_URL: ${{ secrets.APP_BASE_URL }}
           FROM_EMAIL: ${{ secrets.FROM_EMAIL }}
+          REPLY_TO: ${{ secrets.REPLY_TO }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           REDIS_URL: ${{ secrets.REDIS_URL }}
         run: |
           python -m app.cron.mailer
