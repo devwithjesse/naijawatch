@@ -39,9 +39,9 @@ class ExtractorService:
         - event_type: (kidnapping, banditry, armed_robbery, terrorist_attack, communal_clash, assassination, jailbreak, pipeline_vandalism, or other)
         - state: The Nigerian state where it occurred (e.g., Kaduna, Borno, Lagos)
         - location: Specific town, village, or landmark (e.g., Birnin Gwari)
-        - killed: Number of people killed (integer)
-        - injured: Number of people injured (integer)
-        - abducted: Number of people kidnapped/abducted (integer)
+        - killed: Number of people killed (must be an integer, if none specified or vague, return 0)
+        - injured: Number of people injured (must be an integer, if none specified or vague, return 0)
+        - abducted: Number of people kidnapped/abducted (must be an integer, if none specified or vague, return 0)
         - event_date: Date of the incident (YYYY-MM-DD) if mentioned, otherwise null
         - summary: A concise 1-sentence summary of the event.
         - confidence: Your confidence score (0.0 to 1.0)

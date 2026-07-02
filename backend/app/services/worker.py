@@ -123,9 +123,11 @@ class ExtractionWorker:
                     Location.state_id == state_id,
                     Event.event_date == event_date,
                     EventStatistics.killed
-                    == int(data.get("killed", 0) if data.get("killed") else 0),
+                    == int(data.get("killed", 0) if data.get("killed") and type(data.get("killed")) is int else 0),
+                    EventStatistics.injured
+                    == int(data.get("injured", 0) if data.get("injured") and type(data.get("injured")) is int else 0),
                     EventStatistics.abducted
-                    == int(data.get("abducted", 0) if data.get("abducted") else 0),
+                    == int(data.get("abducted", 0) if data.get("abducted") and type(data.get("abducted")) is int else 0),
                 )
                 .first()
             )
