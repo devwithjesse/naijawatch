@@ -8,7 +8,6 @@ from slowapi.util import get_remote_address
 from sqlalchemy import text
 
 from .core.config import config
-from .core.scheduler import start_scheduler
 from .database import Base, engine
 from .routers import digest, events, news, stats, travel
 
