@@ -8,7 +8,7 @@ from ..core.config import settings
 class LLMService:
     def __init__(self):
         self.api_key = settings.GROQ_API_KEY
-        self.model = "llama-3.3-70b-versatile"  # High-quality model for reasoning
+        self.model = "openai/gpt-oss-120b"  # High-quality model for reasoning
         self._client = None
 
     @property
