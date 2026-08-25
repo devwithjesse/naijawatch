@@ -6,7 +6,7 @@ from .llm import LLMService
 class ExtractorService:
     def __init__(self):
         self.llm = LLMService()
-        self.model = "llama-3.3-70b-versatile"
+        self.model = "openai/gpt-oss-120b"
 
     def _preprocess_body(self, text: str, max_chars: int = 1500) -> str:
         """
