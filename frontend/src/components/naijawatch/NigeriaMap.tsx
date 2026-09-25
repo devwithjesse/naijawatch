@@ -27,7 +27,7 @@ export function NigeriaMap({ filters }: Props) {
           <span className="ml-2 inline-flex h-2 w-2 animate-pulse rounded-full bg-primary glow-cyan" />
         </div>
         <span className="font-mono-data text-[11px] text-muted-foreground">
-          {data?.length ?? 0} events tracked
+          Data aggregated from Google RSS feeds
         </span>
       </div>
       <div className="relative h-[480px] w-full">

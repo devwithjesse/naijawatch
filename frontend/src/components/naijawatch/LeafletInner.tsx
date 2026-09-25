@@ -25,8 +25,8 @@ export function LeafletInner({ events }: { events: MapEvent[] }) {
       style={{ height: "100%", width: "100%" }}
     >
       <TileLayer
-        attribution='&copy; OpenStreetMap &copy; CARTO'
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        attribution="&copy; OpenStreetMap &copy; CARTO"
+        url={`https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=${import.meta.env.VITE_CARTO_API_KEY}`}
       />
       {events
         .filter((e) => typeof e.lat === "number" && typeof e.lng === "number")
