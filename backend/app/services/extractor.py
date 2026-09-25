@@ -56,7 +56,14 @@ class ExtractorService:
             self.llm.model = self.model
             response_text = self.llm.generate_response(
                 prompt,
-                system_prompt="You are a specialized security intelligence analyst focusing on Nigerian conflict data. You output only raw JSON.",
+                system_prompt="You are a specialized security intelligence analyst focusing on Nigerian conflict data.\n\n"
+                    "OUTPUT FORMAT RULES (STRICT):\n"
+                    "- Return exactly ONE JSON object, starting with '{' and ending with '}'.\n"
+                    "- Do NOT wrap the object in an array. No '[' or ']' anywhere at the top level.\n"
+                    "- Do NOT include markdown code fences (no ```json or ```).\n"
+                    "- Do NOT include any explanation, preamble, or trailing text.\n"
+                    "- Output must be parseable by json.loads() as-is.\n\n"
+                    "The response is a single flat object with key-value pairs only.",
                 temperature=0.1,  # Low temperature for factual extraction
                 json_mode=True,
             )
@@ -78,3 +85,4 @@ class ExtractorService:
 
             print(f"Extraction error: {e}")
             return {"status": "failed", "error": str(e)}
+        
